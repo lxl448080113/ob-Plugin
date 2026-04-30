@@ -1,5 +1,20 @@
 # Release Notes
 
+## Xiaohongshu Importer Plus 1.0.1
+
+Patch release for image link stability after moving notes.
+
+### Fixes
+
+- Changed imported image links to use vault-absolute paths instead of relative paths
+- Prevented imported image references from breaking after moving notes to a different folder
+
+### Release assets
+
+- `main.js`
+- `manifest.json`
+- `styles.css`
+
 ## Xiaohongshu Importer Plus 1.0.0
 
 First public release of the customized Xiaohongshu importer for Obsidian.

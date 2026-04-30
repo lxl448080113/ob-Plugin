@@ -328,14 +328,12 @@ class XiaohongshuImporterPlugin extends Plugin {
     }
   }
 
-  toMarkdownAssetPath(vaultPath, notePath) {
+  toMarkdownAssetPath(vaultPath) {
     if (vaultPath.startsWith("http")) {
       return vaultPath;
     }
 
-    const noteDirectory = getVaultDirname(notePath);
-    const relativePath = getRelativeVaultPath(noteDirectory, vaultPath);
-    return relativePath || getVaultBasename(vaultPath);
+    return normalizePath(vaultPath);
   }
 
   buildPlaceholderContext({ title, source, date, videoUrl }) {
@@ -421,7 +419,7 @@ class XiaohongshuImporterPlugin extends Plugin {
               `${sanitizedTitle}-cover`,
               "jpg",
             );
-            coverImage = this.toMarkdownAssetPath(downloadedCover, notePath);
+            coverImage = this.toMarkdownAssetPath(downloadedCover);
           }
           markdown += `[![Cover Image](${coverImage})](${url})\n\n`;
         }
@@ -452,7 +450,7 @@ class XiaohongshuImporterPlugin extends Plugin {
                 `${sanitizedTitle}-${index}`,
                 "jpg",
               );
-              localImagePaths.push(this.toMarkdownAssetPath(downloadedImage, notePath));
+              localImagePaths.push(this.toMarkdownAssetPath(downloadedImage));
             }
           } else {
             localImagePaths = images;
